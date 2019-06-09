@@ -2,5 +2,7 @@ data/**.txt
 data/**.xlsx
 cpp_execution/**.exe
 python_excelRead/__pycache__
+python_excelRead/*/__pycache__
+
 .dist
 .vscode
