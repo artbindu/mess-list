@@ -1,0 +1,4 @@
+./data/*.txt
+./data/*.xlsx
+./program/*.exe
+./pythonExcelRead/__pycache__
