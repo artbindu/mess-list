@@ -2,3 +2,4 @@
 ./data/*.xlsx
 ./program/*.exe
 ./pythonExcelRead/__pycache__
+./.dist
