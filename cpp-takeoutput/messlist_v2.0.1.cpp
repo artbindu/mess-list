@@ -96,61 +96,71 @@ void Calculation(struct node1 *month, struct node2 *border, struct node3 *expenc
             float per_unit, total_bill;
         };
 
+// This is Main Function
+// starting of main-function
+int main()
+{
+    while(1)
+    {        
+        char st[10];
+        cout<<"\n  continue\n  help\n  about\n  exit\n";
+        cout<<"enter your choice\t";    cin>>st;
 
-    int main()
-    {
-while(1)
-{        
-char st[10];
-cout<<"\n  continue\n  help\n  about\n  exit\n";
-cout<<"enter your choice\t";    cin>>st;
+        if(strcmp(st,"help")==0)           help(); 
+        else if(strcmp(st,"about")==0)     about(); 
+        else if(strcmp(st,"exit")==0)      exit(0); 
+        else if(strcmp(st,"continue")==0)
+        {  
+                struct node1       *month=NULL;
+                struct node2       *border=NULL;
+                struct node3       *expences=NULL, *exps=NULL; 
+                struct node4       *daily=NULL;       
+                struct node5       *elect=NULL;   
 
-if(strcmp(st,"help")==0)           help(); 
-else if(strcmp(st,"about")==0)     about(); 
-else if(strcmp(st,"exit")==0)      exit(0); 
-else if(strcmp(st,"continue")==0)
-    {  
-        struct node1       *month=NULL;
-        struct node2       *border=NULL;
-        struct node3       *expences=NULL, *exps=NULL; 
-        struct node4       *daily=NULL;       
-        struct node5       *elect=NULL;   
-        int total_day, total_border, expd_type;
-        //total_day=total_border=expd_type=3;    
-       month= entry_node1(month);    
-       total_day= month->month_days;   
-       cout<<"total days of '"<<month->month_name<<"::"<<month->year_name<<"' :\t"<<total_day<<"\n";  
+            int total_day, total_border, expd_type;
+            //total_day=total_border=expd_type=3;    
+            month= entry_node1(month);    
+            total_day= month->month_days;   
+            cout<<"total days of '"<<month->month_name<<"::"<<month->year_name<<"' :\t"<<total_day<<"\n";  
 
-       cout<<"\n\nenter total border of this Mess:\t"; cin>>total_border;
-       border= entry_node2(border, total_border);  //border details
-       cout<<"\n\nenter total Types Expenditure of this month:\t"; cin>>expd_type;           
-       expences= entry_node3(expences, expd_type);  // Enpenditure Details           
-       daily= entry_node4(daily, month, total_day);  // depend on above input
-       // entry elect bill details
-       exps= expences;
-       while(exps!=NULL)
-       {
-            if(strcmp(exps->name,"elect")==0||strcmp(exps->name,"ELECT")==0||strcmp(exps->name,"electrict")==0||strcmp(exps->name,"ELECTRICT")==0)
-                 elect= entry_node5(elect); // input elect bills
-            exps= exps->next;
-       }
-       
-       Daily_Entry_Data(month, border, expences, daily, total_day, total_border, expd_type);
-       //show_all(month, border, expences, daily, total_day, total_border);
-       Calculation(month, border, expences, daily, elect, total_day, total_border, expd_type);  
-       
-       int flag;
-       cout<<"\n\n\n\nShow your result [Y=1/n=0]:\t"; cin>>flag;
-       if(flag==1)     
-        show_all(month, border, expences, daily, elect, total_day, total_border, expd_type);
-        free(month); free(border); free(expences); free(daily);
-    }    
-else cout<<"Invalid Input\n"; 
-}
-    return 0;
+            cout<<"\n\nenter total border of this Mess:\t"; cin>>total_border;
+            border= entry_node2(border, total_border);  //border details
+            cout<<"\n\nenter total Types Expenditure of this month:\t"; cin>>expd_type;           
+            expences= entry_node3(expences, expd_type);  // Enpenditure Details           
+            daily= entry_node4(daily, month, total_day);  // depend on above input
+            // entry elect bill details
+            exps= expences;
+            while(exps!=NULL)
+            {
+                if(strcmp(exps->name,"elect")==0||strcmp(exps->name,"ELECT")==0||strcmp(exps->name,"electric")==0||strcmp(exps->name,"ELECTRIC")==0)
+                    elect= entry_node5(elect); // input elect bills
+                exps= exps->next;
+            }
+            
+            Daily_Entry_Data(month, border, expences, daily, total_day, total_border, expd_type);
+            //show_all(month, border, expences, daily, total_day, total_border);
+            Calculation(month, border, expences, daily, elect, total_day, total_border, expd_type);  
+            
+            int flag;
+            cout<<"\n\n\n\nShow your result [Y=1/n=0]:\t"; cin>>flag;
+            if(flag==1)  {
+                show_all(month, border, expences, daily, elect, total_day, total_border, expd_type);
+            } 
+
+            // clear all memory
+            free(month); 
+            free(border); 
+            free(expences); 
+            free(daily);
+        }    
+        else cout<<"Invalid Input\n"; 
     }
+        return 0;
+}
+// ending of main-function
 
 
+// ===========================add main functions==================================================
 void Calculation(struct node1 *month, struct node2 *border, struct node3 *expences, struct node4 *daily, struct node5 *elect, int total_day, int total_border, int expd_type)
 {
     struct node4 *rem_daily;
@@ -173,25 +183,26 @@ void Calculation(struct node1 *month, struct node2 *border, struct node3 *expenc
     while(expences != NULL)
     { 
         if(flag==0)
-        {   cout<<expences->name<<"  .........Is it mess bazar? [Y/n]:\t"; cin>>ch;}
+        {   cout<<expences->name<<"  .........Is it mess bazar? [Y/n]:\t"; cin>>ch; }
         if(flag==0 && (ch=='y' || ch=='Y'))
         {    
             month->per_meal_charge= (expences->total_expd/(float)month->total_meal);
             expences->per_expd_rate= month->per_meal_charge;
             expences->catagory_total= expences->total_expd;
             expences->meal_charge_id=1;     flag=1;
-        }
-        else{
+
+        } else {
+
             cout<<"(like MASSI/GAS bill/ELCT. bill/GURBAZE)"<<endl;
             expences->per_expd_rate= (expences->total_expd/(float)total_border);  
-            cout<<expences->name<<" .....Is it fixed bill? [Y/n]:\t"; 
-            cin>>ch;
+            cout<<expences->name<<" .....Is it fixed bill? [Y/n]:\t"; cin>>ch;
+
             if(ch=='y' || ch=='Y') 
             {    
-                if(strcmp(expences->name,"elect")==0||strcmp(expences->name,"ELECT")==0||strcmp(expences->name,"electrict")==0||strcmp(expences->name,"ELECTRICT")==0)
+                if(strcmp(expences->name,"elect")==0||strcmp(expences->name,"ELECT")==0||strcmp(expences->name,"electric")==0||strcmp(expences->name,"ELECTRIC")==0)
                 {
-                     expences->catagory_total= elect->total_bill;
-                     cout<<"Total Electric Bill= "<<expences->catagory_total<<endl;
+                    expences->catagory_total= elect->total_bill;
+                    cout<<"Total Electric Bill= "<<expences->catagory_total<<endl;
                 }
                 else {  cout<<"Insert its Total Monthly Cash:\t"; cin>>expences->catagory_total; }
                 
@@ -270,15 +281,13 @@ cout<<"\n\n\nDAILY Data Entry>>>>>>>>>>>>>>>>>>>>>>>>>>>>.\n";
                     strcpy(daily->dipo_name[j], border->name);
                     daily->dipo_amt[j]=dipo;
                     
-            border=border->next;
+            border= border->next;
       }    
       // cout<<"Todays Total Diposite:\t"<<daily->total_dipo<<endl;       
        month->total_dipo+=daily->total_dipo;
        
-       border=rem_border;
-       
-       
-       
+       border= rem_border;
+
        //EXPENCES DAILY
        cout<<"\nEnter Expences Daily\n";
        cout<<"Any one diposite today [Y/n]:\t"; cin>>ch;
@@ -289,12 +298,12 @@ cout<<"\n\n\nDAILY Data Entry>>>>>>>>>>>>>>>>>>>>>>>>>>>>.\n";
             else expd=0;
             
             expences->total_expd+=expd;
-                    strcpy(daily->expd_name[j], expences->name);
-                    daily->expd_amt[j]=expd;
+            strcpy(daily->expd_name[j], expences->name);
+            daily->expd_amt[j]=expd;
             
-            expences=expences->next;
+            expences= expences->next;
             
-            daily->total_expd+=expd;
+            daily->total_expd+= expd;
        } 
       // cout<<"Todays Total Expences:\t"<<daily->total_expd<<endl;       
        month->total_expd+=daily->total_expd;
@@ -397,6 +406,8 @@ struct node5 *entry_node5(struct node5 *elect)
    return elect;
 }
 
+
+
 // complete.....display node................
 void show_all(struct node1 *month, struct node2 *border, struct node3 *expences, struct node4 *daily, struct node5 *elect, int total_day, int total_border, int expd_type)
 {
@@ -409,7 +420,7 @@ void show_all(struct node1 *month, struct node2 *border, struct node3 *expences,
 }
 void show_node1(struct node1 *month)
 {
-cout<<"\n\nshow Monthly Data\n"<<endl;
+    cout<<"\n\nshow Monthly Data\n"<<endl;
     cout<<month->month_name<<"\t::\t"<<month->year_name<<endl;
     cout<<"monthly total diposite:\t"<<month->total_dipo<<endl;
     cout<<"monthly total expences:\t"<<month->total_expd<<endl<<endl;
@@ -420,10 +431,11 @@ cout<<"\n\nshow Monthly Data\n"<<endl;
     cout<<"So TOTAL DUE IN THIS MONTH=\t"<<month->payment<<" Rs/-"<<endl;
     cout<<endl;
 }
+
 void show_node2(struct node2 *border, int total_day, int expd_type)
 {
-float amt1=0, amt2=0,  no1;
-cout<<endl<<"\n\nshow Border Details Data...............\n"<<endl;
+    float amt1=0, amt2=0,  no1;
+    cout<<endl<<"\n\nshow Border Details Data...............\n"<<endl;
     while(border != NULL)
     { 
         cout<<"\n\n------------------------------------------------"<<endl;
@@ -444,15 +456,16 @@ cout<<endl<<"\n\nshow Border Details Data...............\n"<<endl;
         
         cout<<"\nShow Diposite Details\n";
         int flg=0;
-        for(int j=1; j<=total_day; j++)
+        for(int j=1; j<=total_day; j++) {
             if(border->dipo_amt[j] != 0){
                flg++;
-               cout<<flg<<". Date= "<<border->dipo_day[j]<<"\t:\tAmt:\t"<<border->dipo_amt[j]<<endl; }
-            
+               cout<<flg<<". Date= "<<border->dipo_day[j]<<"\t:\tAmt:\t"<<border->dipo_amt[j]<<endl; 
+            }
+        }
         cout<<"\nExpences Details\n";
-        for(int j=1; j<=expd_type; j++)
+        for(int j=1; j<=expd_type; j++) {
             cout<<j<<". "<<border->expd_name[j]<<" \t::\t"<<border->expd_amt[j]<<endl;
-        
+        }
         border=border->next;
     }
     
@@ -461,13 +474,14 @@ cout<<endl<<"\n\nshow Border Details Data...............\n"<<endl;
     cout<<"Profit of Manager=\t"<<round_off_amount(amt1-amt2)<< " Rs/-"<<endl;
     cout<<"**********************************************"<<endl<<endl;
 }
+
 void show_node3(struct node3 *expences)
 {
-float amt=0;
-cout<<"\n\nshow Expences Details Data...............\n"<<endl;
+    float amt=0;
+    cout<<"\n\nshow Expences Details Data..............."<<endl;
     while(expences != NULL)
     {
-    cout<<"\n\n------------"<<expences->name<<"----------------------"<<endl;
+    cout<<"\n------------"<<expences->name<<"----------------------"<<endl;
       
         cout<<endl<<expences->id<<". TOTAL MONTHLY '"<<expences->name;
         cout<<"'\t::\tAmount=\t"<<expences->catagory_total<<" Rs/-"<<endl;
@@ -487,7 +501,7 @@ cout<<"\n\nshow Expences Details Data...............\n"<<endl;
 }
 void show_node4(struct node4 *daily, int total_border, int expd_type)
 {
-cout<<"\n\nshow Day to Day Details...............\n"<<endl;
+    cout<<"\n\nshow Day to Day Details...............\n"<<endl;
     while(daily != NULL)
     {
     cout<<"\n\n------------"<<daily->year_name<<":"<<daily->month_name<<":"<<daily->day<<"----------------------"<<endl;
@@ -522,9 +536,12 @@ void show_node5(struct node5 *elect)
    cout<<"Total Cash:\t"<<elect->total_bill<<endl;
    cout<<"*******************************************"<<endl;
 }
+
+
+
+
+
 // ----------------Helping Function -------------
-
-
 int Numbers(char ch)
 {
    if(ch=='1') return 1;
@@ -540,40 +557,40 @@ int Numbers(char ch)
 }
 void Finding_last_date(struct node1 *aa)
 {
-      int mm=0,yyyy=0;
+    int mm=0,yyyy=0;
       
-      for(int i=0; i<4; i++)
-         yyyy=yyyy*10+Numbers(aa->year_name[i]);
+    for(int i=0; i<4; i++)
+        yyyy=yyyy*10+Numbers(aa->year_name[i]);
      
     do{ 
-      if(strcmp(aa->month_name,"JANUARY")==0)        aa->month_pos=1;     
-      else if(strcmp(aa->month_name,"FEBRUARY")==0)  aa->month_pos=2;  
-      else if(strcmp(aa->month_name,"MARCH")==0)     aa->month_pos=3;     
-      else if(strcmp(aa->month_name,"APRIL")==0)     aa->month_pos=4;  
-      else if(strcmp(aa->month_name,"MAY")==0)       aa->month_pos=5; 
-      else if(strcmp(aa->month_name,"JUNE")==0)      aa->month_pos=6; 
-      else if(strcmp(aa->month_name,"JULY")==0)      aa->month_pos=7; 
-      else if(strcmp(aa->month_name,"AUGUST")==0)    aa->month_pos=8; 
-      else if(strcmp(aa->month_name,"SEPTEMBER")==0) aa->month_pos=9; 
-      else if(strcmp(aa->month_name,"OCTOBER")==0)   aa->month_pos=10; 
-      else if(strcmp(aa->month_name,"NOVEMBER")==0)  aa->month_pos=11; 
-      else if(strcmp(aa->month_name,"DECEMBER")==0)  aa->month_pos=12; 
-      else{cout<<"invlid input/ input-format of month\n";  
-      cout<<"please enter month name again (in small case letter)\t:\t"; 
-      cin>>aa->month_name;     
-      aa->month_pos=0; }         
-   }while(aa->month_pos==0);   
-      mm= aa->month_pos;
-   
-		if(yyyy>9999 || yyyy<1000)
-	    	{cout<<"\n\nInvalid Input now....in YEAR.\n"; exit(0);}
-	    	
-		if(mm==1||mm==3||mm==5||mm==7||mm==8||mm==10||mm==12)  aa->month_days=31;
-      else if(mm==4||mm==6||mm==9||mm==11)   aa->month_days=30;
-      else if(mm==2)
-      {   if((yyyy%4==0 && yyyy%100!=0) || (yyyy%400==0)) aa->month_days=29;
-		    else       aa->month_days=28;
-		}
+        if(strcmp(aa->month_name,"JANUARY")==0)        aa->month_pos=1;     
+        else if(strcmp(aa->month_name,"FEBRUARY")==0)  aa->month_pos=2;  
+        else if(strcmp(aa->month_name,"MARCH")==0)     aa->month_pos=3;     
+        else if(strcmp(aa->month_name,"APRIL")==0)     aa->month_pos=4;  
+        else if(strcmp(aa->month_name,"MAY")==0)       aa->month_pos=5; 
+        else if(strcmp(aa->month_name,"JUNE")==0)      aa->month_pos=6; 
+        else if(strcmp(aa->month_name,"JULY")==0)      aa->month_pos=7; 
+        else if(strcmp(aa->month_name,"AUGUST")==0)    aa->month_pos=8; 
+        else if(strcmp(aa->month_name,"SEPTEMBER")==0) aa->month_pos=9; 
+        else if(strcmp(aa->month_name,"OCTOBER")==0)   aa->month_pos=10; 
+        else if(strcmp(aa->month_name,"NOVEMBER")==0)  aa->month_pos=11; 
+        else if(strcmp(aa->month_name,"DECEMBER")==0)  aa->month_pos=12; 
+        else{cout<<"invlid input/ input-format of month\n";  
+        cout<<"please enter month name again (in small case letter)\t:\t"; 
+        cin>>aa->month_name;     
+        aa->month_pos=0; }         
+    }while(aa->month_pos==0);   
+    mm= aa->month_pos;
+
+    if(yyyy>9999 || yyyy<1000)
+        {cout<<"\n\nInvalid Input now....in YEAR.\n"; exit(0);}
+        
+    if(mm==1||mm==3||mm==5||mm==7||mm==8||mm==10||mm==12)  aa->month_days=31;
+    else if(mm==4||mm==6||mm==9||mm==11)   aa->month_days=30;
+    else if(mm==2)
+    {   if((yyyy%4==0 && yyyy%100!=0) || (yyyy%400==0)) aa->month_days=29;
+        else       aa->month_days=28;
+	}
 	//	return aa->month_days;
 }
 float round_off_amount(float number)
