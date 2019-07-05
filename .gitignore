@@ -1,8 +1,19 @@
-data/**.txt
+
+# text files
+data/**.txt 
+
+# excel file without demo.xlsx
 data/**.xlsx
-cpp_execution/**.exe
-python_excelRead/__pycache__
-python_excelRead/*/__pycache__
+!data/demo.xlsx
+
+# cpp compiled files
+cpp-takeoutput/**
+!cpp-takeoutput/**.cpp
+
+# python compiled file
+python-takeinput/*/__pycache__
+
+
 
 .dist
 .vscode
