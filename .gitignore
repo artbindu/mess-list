@@ -1,4 +1,7 @@
 
+# ignore folder
+OriginalData
+
 # text files
 data/**.txt 
 
