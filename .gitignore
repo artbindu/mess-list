@@ -3,7 +3,8 @@
 OriginalData
 
 # text files
-data/**.txt 
+data/**.txt
+data/**.pdf
 
 # excel file without demo.xlsx
 data/**.xlsx
