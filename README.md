@@ -2,6 +2,8 @@
         **open git bash here**
 -----------------------------------
 
+# open git terminal
+
 # fill up 'data/demo.xlsx' file
 
 # run python file take input from excel :
@@ -11,7 +13,7 @@ input-data:     `demo`
 # open 'data/demo.txt' in 'notepad'
 
 # run cpp file to get output from txt files : run last version of cpp file
-compile:    `c++ -o cpp-takeoutput/messlist_v2.0.1 cpp-takeoutput/messlist_v2.0.1.cpp`
+compile:    `g++ -o cpp-takeoutput/messlist_v2.0.1 cpp-takeoutput/messlist_v2.0.1.cpp`
 run:        `./cpp-takeoutput/messlist_v2.0.1`
 
 # copy output from git-bash terminal and create a output file with in 'demo'
