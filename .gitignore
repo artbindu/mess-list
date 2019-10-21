@@ -17,3 +17,7 @@ python-takeinput/*/__pycache__
 
 .dist
 .vscode
+
+# ----------------------------------------------------------------
+# add another gitignore file  :: web application gitignore
+!application/.gitignore

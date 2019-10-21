@@ -1,0 +1,8 @@
+# folder
+node_modules
+dist
+
+# file
+proj00.md
+package-lock.json
+*.log

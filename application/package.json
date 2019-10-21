@@ -1,0 +1,26 @@
+{
+  "name": "my-web-application-using-nodejs",
+  "version": "1.0.0.20191021",
+  "description": "Create full project into javascript web application using nodejs & mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "ts-node ./src/server.ts",
+    "start": "nodemon ./dist/server.js",
+    "prod": "npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artbindu/mess-list.git/application.git"
+  },
+  "author": "Biswasindhu Mandal",
+  "license": "ISC",
+  "homepage": "https://github.com/artbindu/mess-list.git/application#readme",
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
+  }
+}
