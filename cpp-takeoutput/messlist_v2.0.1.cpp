@@ -126,7 +126,7 @@ int main()
             cout<<"\n\nenter total border of this Mess:\t"; cin>>total_border;
             border= entry_node2(border, total_border);  //border details
             cout<<"\n\nenter total Types Expenditure of this month:\t"; cin>>expd_type;           
-            expences= entry_node3(expences, expd_type);  // Enpenditure Details           
+            expences= entry_node3(expences, expd_type);  // Expenditure Details           
             daily= entry_node4(daily, month, total_day);  // depend on above input
             // entry elect bill details
             exps= expences;

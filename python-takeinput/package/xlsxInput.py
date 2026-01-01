@@ -1,4 +1,4 @@
-import xlrd.__init__ as xlrd
+from openpyxl import load_workbook
 
 class xlsxInput :
     path = None
@@ -11,17 +11,16 @@ class xlsxInput :
         self.data = self.prossingData()
 
     def takeInputFromExcel(self) :   
-        openSheet = xlrd.open_workbook(self.path) 
-        sheet = openSheet.sheet_by_index(0) 
-        sheet.cell_value(0, 0) 
+        workbook = load_workbook(self.path, data_only=True)
+        sheet = workbook.active
         return sheet
 
     def prossingData(self) :
         arrayData = []
-        for i in range(self.sheet.nrows) :
+        for row in self.sheet.iter_rows(values_only=True):
             tempArray = []
-            for j in range(0,len(self.sheet.row_values(i)))  :
-                tempArray.append(self.sheet.row_values(i)[j])
+            for cell in row:
+                tempArray.append(cell if cell is not None else '')
             arrayData.append(tempArray)
         return arrayData
 

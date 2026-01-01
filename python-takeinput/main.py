@@ -2,7 +2,7 @@ import package.xlsxInput as xlsxInput
 import package.messCSVdata as messData
 
 print('by @rtb!ndu')
-print("plese store your '.xlsx' file with in './data' folder\n\n")
+print("Please store your '.xlsx' file with in './data' folder\n\n")
 fileName = input('fileName: ')
 spath = "data/"+fileName+".xlsx"
 dpath = "data/"+fileName+".txt"
@@ -13,5 +13,3 @@ xlsxData = ob1.data
 print(xlsxData)
 ob3 = messData.PrintCSVData(dpath, xlsxData)
 print(ob3.sms)
-
- 
