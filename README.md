@@ -1,22 +1,40 @@
------------------------------------
-        **open git bash here**
------------------------------------
+# Mess List - Run Guide
 
-# fill up 'data/demo.xlsx' file
+Use a terminal in the project root (Git Bash or macOS/Linux shell).
 
-# run python file take input from excel :
-compile & run:  `python python-takeinput/main.py`
-input-data:     `demo`
+## 1) Prepare input Excel file
 
-# open 'data/demo.txt' in 'notepad'
+Update `data/demo.xlsx` with your data.
 
-# run cpp file to get output from txt files : run last version of cpp file
-compile:    `c++ -o cpp-takeoutput/messlist_v2.0.1 cpp-takeoutput/messlist_v2.0.1.cpp`
-run:        `./cpp-takeoutput/messlist_v2.0.1`
+If you have data-format issues, check `data/README.md`.
 
-# copy output from git-bash terminal and create a output file with in 'demo'
+## 2) Generate TXT input using Python
 
+Run:
 
+`python python-takeinput/main.py`
 
-<problems_to_data_files> :: check `data/README.md`
+When prompted for input name, use: `demo`
+
+This generates `data/demo.txt`.
+
+## 3) Verify TXT file formatting
+
+Open `data/demo.txt` in a text editor (for example, Notepad) and verify the content.
+
+## 4) Compile and run C++ output program
+
+Use the latest C++ version (`messlist_v2.0.1.cpp`):
+
+Compile:
+
+`c++ -o cpp-takeoutput/messlist_v2.0.1 cpp-takeoutput/messlist_v2.0.1.cpp`
+
+Run:
+
+`./cpp-takeoutput/messlist_v2.0.1`
+
+## 5) Save final output
+
+Copy the terminal output and save it in your desired output file for `demo`.
 
