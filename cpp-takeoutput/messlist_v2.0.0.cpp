@@ -530,7 +530,7 @@ int Numbers(char ch)
    else if(ch=='7') return 7;
    else if(ch=='8') return 8;
    else if(ch=='9') return 9;
-   else if(ch=='0') return 0;
+   else return 0;
 }
 void Finding_last_date(struct node1 *aa)
 {
