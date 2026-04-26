@@ -1,10 +1,12 @@
 
 # text files
-data/**.txt 
+data/**.txt
+!data/2019_June_Sample.txt
 
 # excel file without demo.xlsx
 data/**.xlsx
 !data/demo.xlsx
+!data/2019_June_Sample.xlsx
 
 # cpp compiled files
 cpp-takeoutput/**
